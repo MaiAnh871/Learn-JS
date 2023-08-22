@@ -5,9 +5,16 @@ let currentResult = defaultResult;
 // let calculationDescription = '(' + defaultResult + ' + 10) * 3 / 2 - 1';
 
 let calculationDescription = `(${defaultResult} + 10) * 3 / 2 - 1`;
-let errorMessage =  'An error \n' + 
-                    'occurred!';
+let errorMessage = "An error \n" + "occurred!";
 
-currentResult = (currentResult + 10) * 3 / 2 - 1;
+function add(num1, num2) {
+    const result = num1 + num2;
+    alert("The result was " + result);
+}
 
-outputResult(currentResult, errorMessage);
+add(1, 2);
+add(2, 3);
+
+currentResult = ((currentResult + 10) * 3) / 2 - 1;
+
+outputResult(currentResult, calculationDescription);
