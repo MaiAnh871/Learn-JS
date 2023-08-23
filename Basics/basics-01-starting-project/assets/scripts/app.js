@@ -5,6 +5,8 @@ function getUserNumberInput() {
     return parseInt(userInput.value);
 }
 
+
+// Write a log for all operation functions
 function createAndWriteLog(operator, resultBeforeCalc, calcNumber) {
     const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
     outputResult(resultBeforeCalc, calcDescription);
@@ -38,6 +40,7 @@ function divide() {
     createAndWriteLog("/", initialResult, enteredNumber);
 }
 
+/* Test comments */
 addBtn.addEventListener("click", add);
 subtractBtn.addEventListener("click", subtract);
 multiplyBtn.addEventListener("click", multiply);
