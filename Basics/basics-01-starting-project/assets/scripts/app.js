@@ -38,7 +38,8 @@ function calculateResult(calculationType) {
         calculationType !== "add" &&
         calculationType !== "subtract" &&
         calculationType !== "multiply" &&
-        calculationType !== "divide"
+        calculationType !== "divide" ||
+        !enteredNumber
     ) {
         return;
     }
