@@ -165,8 +165,18 @@ function printLogHandler() {
     // }
     // console.log(battleLog);
 
+    // for (const logEntry of battleLog) {
+    //     console.log(logEntry);
+    // }
+
+    let i = 0;
     for (const logEntry of battleLog) {
-        console.log(logEntry);
+        console.log(`#${i}`);
+        for (const key in logEntry) {
+            console.log(key);
+            console.log(logEntry[key]);
+        }
+        i++;
     }
 }
 
