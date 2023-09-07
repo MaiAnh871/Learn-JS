@@ -9,3 +9,18 @@ console.log(yetMoreNumbers);
 
 const yetYetMoreNumbers = Array.from("Hi!");
 console.log(yetYetMoreNumbers);
+
+const hobbies = ["Sports", "Cooking"];
+hobbies[1] = "Coding";
+hobbies[5] = "Reading";
+console.log(hobbies);
+
+// 0
+// :
+// "Sports"
+// 1
+// :
+// "Coding"
+// 5
+// :
+// "Reading"
