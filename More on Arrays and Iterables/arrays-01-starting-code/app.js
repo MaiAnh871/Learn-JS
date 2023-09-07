@@ -40,3 +40,15 @@ const taxAdjustedPrices = prices.map((price, idx, prices) => {
 });
 
 console.log(taxAdjustedPrices);
+
+// let sum = 0;
+
+// prices.forEach((price, idx, prices) => {
+//     sum += price;
+// });
+
+// console.log(sum);
+
+const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
+
+console.log(sum);
