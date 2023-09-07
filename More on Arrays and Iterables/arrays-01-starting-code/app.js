@@ -27,11 +27,16 @@ console.log(hobbies);
 
 const prices = [10.99, 5.99, 3.99, 6.59];
 const tax = 0.19;
-const taxAdjustedPrices = [];
+// const taxAdjustedPrices = [];
 
-prices.forEach((price, idx, prices) => {
+// prices.forEach((price, idx, prices) => {
+//     const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
+//     taxAdjustedPrices.push(priceObj);
+// });
+
+const taxAdjustedPrices = prices.map((price, idx, prices) => {
     const priceObj = { index: idx, taxAdjPrice: price * (1 + tax) };
-    taxAdjustedPrices.push(priceObj);
+    return priceObj;
 });
 
 console.log(taxAdjustedPrices);
