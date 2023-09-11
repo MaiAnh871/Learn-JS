@@ -49,6 +49,12 @@ console.log(taxAdjustedPrices);
 
 // console.log(sum);
 
-const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
+// const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
 
-console.log(sum);
+// console.log(sum);
+
+// Array destructing
+const nameData = ["Max", "Schwartz", "Mr", 30];
+
+const [firstName, lastName, ...otherInformation] = nameData;
+console.log(firstName, lastName, ...otherInformation);
