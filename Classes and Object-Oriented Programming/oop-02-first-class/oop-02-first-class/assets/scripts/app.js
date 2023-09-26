@@ -18,7 +18,10 @@ class Component {
     constructor(renderHookId) {
         this.hookId = renderHookId;
         console.log("Component called constructor!");
+        this.render();
     }
+
+    render() {}
 
     createRootElement(tag, cssClasses, attributes) {
         const rootElement = document.createElement(tag);
@@ -126,18 +129,19 @@ class ProductList extends Component {
             new ElementAttribute("id", "prod-list"),
         ]);
         for (const prod of this.products) {
-            const productItem = new ProductItem(prod, "prod-list");
-            productItem.render();
+            new ProductItem(prod, "prod-list");
         }
     }
 }
 
 class Shop {
+    constructor() {
+        this.render();
+    }
+
     render() {
         this.cart = new ShoppingCart("app");
-        this.cart.render();
-        const productList = new ProductList("app");
-        productList.render();
+        new ProductList("app");
     }
 }
 
@@ -146,7 +150,6 @@ class App {
 
     static init() {
         const shop = new Shop();
-        shop.render();
         this.cart = shop.cart;
     }
 
