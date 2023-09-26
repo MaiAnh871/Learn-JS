@@ -12,6 +12,11 @@ class ProductItem {
         this.product = product;
     }
 
+    addToCart() {
+        console.log("Adding product to cart...");
+        console.log(this.product);
+    }
+
     render() {
         const prodEl = document.createElement("li");
         prodEl.className = "product-item";
@@ -26,6 +31,9 @@ class ProductItem {
         </div>
       </div>
       `;
+        const addCartButton = prodEl.querySelector("button");
+        // if not add bind(this), it will reference to addCartButton. bind this to reference to productItem
+        addCartButton.addEventListener("click", this.addToCart.bind(this));
         return prodEl;
     }
 }
