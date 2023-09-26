@@ -15,10 +15,12 @@ class ElementAttribute {
 }
 
 class Component {
-    constructor(renderHookId) {
+    constructor(renderHookId, shouldRender = true) {
         this.hookId = renderHookId;
+        if (shouldRender) {
+            this.render();
+        }
         console.log("Component called constructor!");
-        this.render();
     }
 
     render() {}
@@ -56,7 +58,12 @@ class ShoppingCart extends Component {
     }
 
     constructor(renderHookId) {
-        super(renderHookId);
+        super(renderHookId, false);
+        this.orderProducts = function () {
+            console.log("Ordering products");
+            console.log(this.items);
+        };
+        this.render();
     }
 
     addProduct(product) {
@@ -71,14 +78,21 @@ class ShoppingCart extends Component {
         <h2>Total: \$${0}</h2>
         <button>Order Now!</button>
       `;
+        const orderButton = cartEl.querySelector("button");
+
+        // Both are okay
+        //orderButton.addEventListener("click", this.orderProducts.bind(this));
+        orderButton.addEventListener("click", () => this.orderProducts());
+
         this.totalOutput = cartEl.querySelector("h2");
     }
 }
 
 class ProductItem extends Component {
     constructor(product, renderHookId) {
-        super(renderHookId);
+        super(renderHookId, false);
         this.product = product;
+        this.render();
     }
 
     addToCart() {
@@ -105,31 +119,43 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-    products = [
-        new Product(
-            "A Pillow",
-            "https://lzd-img-global.slatic.net/g/p/60b884d18432167cd07b99f740f272d5.jpg_720x720q80.jpg",
-            "A soft pillow!",
-            19.99
-        ),
-        new Product(
-            "A Carpet",
-            "https://smilecarpetcleaning.co.uk/wp-content/uploads/2018/10/deep-carpet-cleaning-Bury3.jpg",
-            "A carpet which you might like - or not.",
-            89.99
-        ),
-    ];
+    products = [];
 
     constructor(renderHookId) {
         super(renderHookId);
+        this.fetchProducts();
+    }
+
+    fetchProducts() {
+        this.products = [
+            new Product(
+                "A Pillow",
+                "https://lzd-img-global.slatic.net/g/p/60b884d18432167cd07b99f740f272d5.jpg_720x720q80.jpg",
+                "A soft pillow!",
+                19.99
+            ),
+            new Product(
+                "A Carpet",
+                "https://smilecarpetcleaning.co.uk/wp-content/uploads/2018/10/deep-carpet-cleaning-Bury3.jpg",
+                "A carpet which you might like - or not.",
+                89.99
+            ),
+        ];
+        this.renderProducts();
+    }
+
+    renderProducts() {
+        for (const prod of this.products) {
+            new ProductItem(prod, "prod-list");
+        }
     }
 
     render() {
         this.createRootElement("ul", "product-list", [
             new ElementAttribute("id", "prod-list"),
         ]);
-        for (const prod of this.products) {
-            new ProductItem(prod, "prod-list");
+        if (this.products && this.products.length > 0) {
+            this.renderProducts();
         }
     }
 }
