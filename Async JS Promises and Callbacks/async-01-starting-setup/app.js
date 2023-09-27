@@ -1,8 +1,16 @@
-const button = document.querySelector('button');
-const output = document.querySelector('p');
+const button = document.querySelector("button");
+const output = document.querySelector("p");
 
 function trackUserHandler() {
-  console.log('Clicked!');
+    navigator.geolocation.getCurrentPosition(
+        (posData) => {
+            console.log(posData);
+        },
+        (error) => {
+            console.log(error);
+        }
+    );
+    console.log("Getting Position...");
 }
 
-button.addEventListener('click', trackUserHandler);
+button.addEventListener("click", trackUserHandler);
