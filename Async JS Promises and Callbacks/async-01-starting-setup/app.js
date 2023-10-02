@@ -56,3 +56,18 @@ async function trackUserHandler() {
 }
 
 button.addEventListener("click", trackUserHandler);
+
+// // race is used if you concern one of two conditions, use one promise and ignore the other one.
+// Promise.race([getPosition(), setTimer(1000)]).then((data) => {
+//     console.log(data);
+// });
+
+// // if one fails, the other will not be excuted
+// Promise.all([getPosition(), setTimer(1000)]).then((promiseData) => {
+//     console.log(promiseData);
+// });
+
+// consider all and return an array what failed what succeeded
+Promise.allSettled([getPosition(), setTimer(1000)]).then((promiseData) => {
+    console.log(promiseData);
+});
